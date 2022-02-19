@@ -71,34 +71,72 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "quarantine buddy",
+    category: "dinner",
+    price: 20.01,
+    img: "./images/item-6.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
+  {
+    id: 11,
+    title: "Bangun",
+    category: "pagi",
+    price: 20.01,
+    img: "./images/item-7.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
-
 const sectionCenter = document.querySelector(".section-center");
-
-const filterBtns = document.querySelectorAll(".filter-btn");
+const btnContainer = document.querySelector(".btn-container");
 
 // Load Item
 window.addEventListener("DOMContentLoaded", function () {
   displayMenuItem(menu);
+  displayButton(menu);
 });
 
-// Filter items
-filterBtns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    const category = e.currentTarget.dataset.id;
-    const menuCategory = menu.filter(function (i) {
-      if (i.category === category) {
-        return i;
+// display button
+function displayButton(menu) {
+  const categories = menu.reduce(
+    function (values, i) {
+      if (!values.includes(i.category)) {
+        values.push(i.category);
+      }
+      return values;
+    },
+    ["all"]
+  );
+
+  const categoriesBtn = categories
+    .map(function (ctgr) {
+      return `<button class="filter-btn" type="button" data-id="${ctgr}">${ctgr}</button>`;
+    })
+    .join("");
+  btnContainer.innerHTML = categoriesBtn;
+
+  // BUtton show on the page,
+  const filterBtns = document.querySelectorAll(".filter-btn");
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter(function (i) {
+        if (i.category === category) {
+          return i;
+        }
+      });
+      if (category === "all") {
+        displayMenuItem(menu);
+      } else {
+        displayMenuItem(menuCategory);
       }
     });
-    if (category === "all") {
-      displayMenuItem(menu);
-    } else {
-      displayMenuItem(menuCategory);
-    }
   });
-});
-
+  return;
+}
+// display menu item
 function displayMenuItem(item) {
   let menus = item.map(function (m) {
     return `<article class="menu-item">
