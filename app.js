@@ -139,7 +139,8 @@ function displayButton(menu) {
 // display menu item
 function displayMenuItem(item) {
   let menus = item.map(function (m) {
-    return `<article class="menu-item">
+    return `
+        <article class="menu-item">
           <img class="photo" src="${m.img}" alt="menu-item" />
           <div class="item-info">
             <header>
@@ -150,7 +151,8 @@ function displayMenuItem(item) {
               ${m.desc}
             </p>
           </div>
-        </article>`;
+        </article>
+        `;
   });
   menus = menus.join("");
   sectionCenter.innerHTML = menus;

@@ -209,7 +209,7 @@ Menu
   color: var(--clr-white);
 }
 .section-center {
-  width: 90vw;
+  width: 91vw;
   margin: 0 auto;
   max-width: 1170px;
   display: grid;
@@ -243,14 +243,26 @@ Menu
   padding-top: 1rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .menu-item {
     grid-template-columns: 225px 1fr;
     gap: 0 1.25rem;
-    max-width: 40rem;
+    max-width: 60rem;
   }
+
   .photo {
     height: 175px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .filter-btn {
+    margin-bottom: 1rem;
   }
 }
 @media screen and (min-width: 1200px) {
